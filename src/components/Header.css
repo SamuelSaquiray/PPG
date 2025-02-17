@@ -1,0 +1,49 @@
+/* Contenedor del Header */
+.header-container {
+    display: flex;
+    background-color: #A9CCE3;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 70px;
+    width: 970px;
+    height: 70px;
+    border-radius:0 0 5px 5px ;
+  }
+  
+  /* Estilos para los enlaces de navegación */
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    opacity: 0.4;
+    font-size: 1rem; /* Ajusta según el tamaño de fuente deseado */
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
+  }
+  
+  .nav-links a:hover {
+    opacity: 0.7;
+  }
+  
+  /* Estilos para los enlaces sociales */
+  .social-links {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem; /* Espaciado entre iconos */
+    opacity: 0.4;
+  }
+  
+  .social-icon {
+    height: 1.5rem; /* Ajusta el tamaño del icono */
+    width: 1.5rem;
+    transition: opacity 0.2s;
+  }
+  
+  .social-icon:hover {
+    opacity: 0.7;
+  }
+  

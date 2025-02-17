@@ -1,0 +1,27 @@
+import PropTypes from "prop-types";
+import "./dia.css"; 
+
+const statusColors = {
+    normal: "green",
+    precaución: "yellow",
+    alerta: "red",
+    disable: "disable",
+};
+
+function DayCard({ name, status }) {
+    return (
+        <div className={`day-card`}>
+            {/* Indicador de estado */}
+            <span className={`status-indicator ${statusColors[status]}`}></span>
+            {/* Nombre del día */}
+            <p className="day-name">{name}</p>
+        </div>
+    );
+}
+
+DayCard.propTypes = {
+    name: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+};
+
+export default DayCard;

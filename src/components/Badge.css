@@ -1,0 +1,18 @@
+/* Botón Badge */
+.badge-button {
+    margin-top: 1.5rem; /* mt-6 */
+    padding: 1.5rem 3.5rem; /* px-14 py-6 */
+    font-size: 1.25rem; /* text-xl */
+    color: #fff; /* text-white */
+    font-weight: 600; /* font-semibold */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+    background-color: #06E3AF; /* Default green color */
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .badge-button:hover {
+    background-color: #16a34a; /* hover:bg-green-600 */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* hover:shadow-lg */
+  }
+  

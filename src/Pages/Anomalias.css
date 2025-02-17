@@ -1,0 +1,70 @@
+.ppg-analysis {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ppg-container {
+    background-color: #f9fafb;
+  }
+  
+  .ppg-content {
+    display: flex;
+    flex-direction:row;
+    margin: 0 auto;
+    max-width: fit-content;
+  }
+  
+  .ppg-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #2563eb;
+  }
+  
+  .ppg-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;    
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .ppg-patient-info {
+    margin-top: 1rem;
+  }
+  
+  .ppg-subtitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+  
+  .ppg-patient-details {
+    margin-top: 0.5rem;
+    color: #4b5563;
+  }
+  
+  .ppg-patient-details li {
+    margin-bottom: 8px;
+  }
+  
+  .ppg-chart-section {
+    margin-top: 1.5rem;
+  }
+  
+  .ppg-chart-container {
+    margin-top: 1rem;
+  }
+  .ppg-chart-section-title{
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    color: #2563eb;
+
+  }
+  
