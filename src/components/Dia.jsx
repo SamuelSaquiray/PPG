@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./dia.css"; 
+import "./Dia.css"; 
 
 const statusColors = {
     normal: "green",
