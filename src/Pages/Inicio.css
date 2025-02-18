@@ -18,24 +18,25 @@ body {
 /* Texto principal */
 .text-container {
   width: 100%;
-  max-width: 740px;
+  max-width: 538px;
   margin: 0 auto;
   padding: 100px 0;
 }
 
 .welcome-title {
   
-  color: #6a0dad; /* Color morado */
+  color: #075A85; /* Color morado */
   font-family: "Raleway", serif;
   font-optical-sizing: auto;
   font-weight: 800;
-  font-style: normal;
+  font-size:44px;
+
 }
 
 .welcome-subtitle {
   
   margin-top: 1rem;
-  font-size:20px;
+  font-size:15px;
   line-height: 1.5;
   color: #3D4765;
   font-family: "IBM Plex Mono", serif;

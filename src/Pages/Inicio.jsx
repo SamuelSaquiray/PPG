@@ -18,7 +18,7 @@ function Inicio() {
               <div>
                 
               </div>
-            
+              <img src="/cardio_grafic.svg" alt="Ppg" style={{opacity:"60%" , width: '500px', height: '500px'}} />
           </div>       
       </>
     );

@@ -4,7 +4,7 @@ function Badge() {
   return (
     <>
       <button className="badge-button">
-        Comencemos &gt;
+        Comencemos
       </button>
     </>
   );
