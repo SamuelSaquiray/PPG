@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 function MemberCard({ title, description, imagen,cargo }) {
-  const defaultImage = "public\image.png"; 
+  const defaultImage = "image.png"; 
   return(
       <div className="container-member-card">
       <img src={imagen || defaultImage} alt="Foto de perfil" onError={(e) => e.target.src = defaultImage} />
