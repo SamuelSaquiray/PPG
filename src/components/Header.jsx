@@ -18,7 +18,7 @@ function Header() {
           <Link to="/ppg">Anomalías</Link>
           <Link to="/Historial">Historial</Link>
           <Link to="/Equipo">Equipo</Link>
-          <Link to="">Unirte</Link>
+          <button id="Unirte">Unirte</button>
         </nav>
       </header>
     </>

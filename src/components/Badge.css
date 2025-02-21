@@ -5,7 +5,7 @@
     font-size: 16px; /* text-xl */
     color: #fff; /* text-white */
     font-weight: 600; /* font-semibold */
-    border-radius: 0.5rem ; /* rounded-lg */
+    border-radius: 0rem ; /* rounded-lg */
     background-color: #2ABBF8; 
     transition: background-color 0.3s, box-shadow 0.3s;
   }

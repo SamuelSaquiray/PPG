@@ -12,9 +12,10 @@ function DayCard({ name, status }) {
     return (
         <div className={`day-card`}>
             {/* Indicador de estado */}
-            <span className={`status-indicator ${statusColors[status]}`}></span>
+            
             {/* Nombre del día */}
             <p className="day-name">{name}</p>
+            <span className={`status-indicator ${statusColors[status]}`}></span>
         </div>
     );
 }

@@ -1,6 +1,8 @@
 /* Contenedor del Header */
 .header-container {
     display: flex;
+    position: relative;
+    top: 5px;
     justify-content: space-between;
     align-items: center;
     padding: 0 70px;
@@ -13,7 +15,7 @@
   .nav-links {
     display: flex;
     flex-direction: row;
-    gap: 70px;
+    gap: 60px;
     opacity: 1;
     font-size: 1rem; /* Ajusta según el tamaño de fuente deseado */
   }
@@ -45,3 +47,19 @@
     opacity: 0.7;
   }
   
+  #Unirte{
+    background-color: #2ABBF8;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 0;
+    position: relative;
+    bottom:5px;
+    transition: opacity 0.2s;
+
+  }
+  #Unirte:hover{
+    opacity: 0.7;
+  }

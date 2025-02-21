@@ -1,34 +1,28 @@
 .ppg-analysis {
-    font-family: 'Arial', sans-serif;
     display: flex;
     flex-direction: column;
   }
   
-  .ppg-container {
-    background-color: #f9fafb;
-  }
-  
+
   .ppg-content {
     display: flex;
     flex-direction:row;
     margin: 0 auto;
     max-width: fit-content;
+    padding-top:70px ;
   }
   
   .ppg-title {
     font-size: 1.5rem;
     font-weight: 700;
     text-align: center;
-    color: #2563eb;
+    color: #075A85;
   }
   
   .ppg-card {
     display: flex;
     flex-direction: column;
     background-color: white;    
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 1.5rem;
     margin-top: 1.5rem;
     align-items: center;
     justify-content: center;
@@ -54,7 +48,7 @@
   }
   
   .ppg-chart-section {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
   
   .ppg-chart-container {
@@ -64,7 +58,9 @@
     display: flex;
     justify-content: space-around;
     font-size: 1.5rem;
-    color: #2563eb;
+    color: #075A85;
 
   }
-  
+  li{
+    list-style-type: none;
+  }

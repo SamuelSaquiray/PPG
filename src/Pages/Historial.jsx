@@ -3,13 +3,13 @@ import "./Historial.css";
 import DayCard from "../components/Dia";
 
 const days = [
-  { name: "Lunes", status: "disable" },
+  { name: "Lunes", status: "normal" },
   { name: "Martes", status: "normal" },
   { name: "Miércoles", status: "normal" },
-  { name: "Jueves", status: "normal" },
-  { name: "Viernes", status: "normal" },
+  { name: "Jueves", status: "alerta" },
+  { name: "Viernes", status: "alerta" },
   { name: "Sábado", status: "precaución" },
-  { name: "Domingo", status: "normal" },
+  { name: "Domingo", status: "disable" },
 ];
 
 const WeeklyHealthControl = () => {

@@ -83,7 +83,7 @@ const HeartbeatGraph = () => {
       },
       y: {
         title: {
-          display: true,
+          display: false,
           text: "PPG ",
         },
         min: 40,
