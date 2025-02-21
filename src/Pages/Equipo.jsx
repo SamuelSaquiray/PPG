@@ -9,13 +9,13 @@ function Equipo() {
       <h1>Nuestro equipo de trabajo</h1>
     </div>
     <div className="members-team">
-    <MemberCard title="Samuel Saquiray" imagen="public/Perfil/Saquiray.png"
+    <MemberCard title="Samuel Saquiray" imagen="public/Saquiray.png"
       description="Estudiante de quinto ciclo de la carrera de ciencias de la computacion"
       cargo="CTO" />
-       <MemberCard title="Diego Uchasara" imagen="public/Perfil/Uchasara.jpg"
+       <MemberCard title="Diego Uchasara" imagen="public/Uchasara.jpg"
       description="Estudiante de septimo ciclo de la carrera de ingenieria electronica"
       cargo="CIO" />
-       <MemberCard title="Berdugo" imagen="public/Perfil/Berde.jpg"
+       <MemberCard title="Berdugo" imagen="public/Berde.jpg"
       description="Estudiante de ... No se pero es berdugo"
       cargo="Hierro 4" />
 
