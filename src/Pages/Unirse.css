@@ -1,0 +1,90 @@
+/* Contenedor principal */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* Tarjeta de registro */
+.register-card {
+  width: 400px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Título */
+.register-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Formulario */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Campos de entrada */
+.register-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Botón de registro */
+.register-button,.login-button,.back-button {
+  padding: 10px;
+  font-size: 1rem;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.register-button:hover ,.login-button:hover{
+  background-color: #0056b3;
+}
+
+/* Contenedor del botón de Google */
+.google-signin-container {
+  margin-top: 15px;
+}
+
+/* Botón de registro con Google */
+.google-signin-button {
+  padding: 10px;
+  font-size: 1rem;
+  color: white;
+  background-color: #db4437;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.google-signin-button:hover {
+  background-color: #b33628;
+}
+
+/* Botón de regresar */
+
+.back-button:hover {
+  background-color: #5a6268;
+}
+.back-button{
+  position: relative;
+  top:10px;
+}

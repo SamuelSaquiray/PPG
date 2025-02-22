@@ -26,8 +26,8 @@ body {
 
 .welcome-title {
   
-  color: #075A85; /* Color morado */
-  font-family: "Raleway", serif;
+  color: color(srgb 63.5% 15.3% 17.3%); /* Color morado */
+  font-family: "Bogart", serif;
   font-optical-sizing: auto;
   font-weight: 800;
   font-size:44px;

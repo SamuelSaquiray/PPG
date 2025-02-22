@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 
 function Header() {
+  const handleClick = () => {
+    window.location.href = "/unirse";
+  };
   return (
     <>
       <header className="header-container">
@@ -15,10 +18,10 @@ function Header() {
         {/* Navegación principal */}
         <nav className="nav-links">
           <Link to="/">Inicio</Link>
-          <Link to="/ppg">Anomalías</Link>
+          <Link to="/ppg">Control</Link>
           <Link to="/Historial">Historial</Link>
           <Link to="/Equipo">Equipo</Link>
-          <button id="Unirte">Unirte</button>
+          <button id="Unirse" onClick={handleClick}>Unirte</button>
         </nav>
       </header>
     </>
