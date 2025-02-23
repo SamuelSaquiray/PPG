@@ -8,6 +8,7 @@
     height: 16rem; /* 32 * 0.25rem */
     background-color: rgb(221, 239, 247);
     transition: transform 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .day-card:hover {

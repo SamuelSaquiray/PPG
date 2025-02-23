@@ -8,6 +8,7 @@
     border-radius: 0rem ; /* rounded-lg */
     background-color: #2ABBF8; 
     transition: background-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
   }
   
   .badge-button:hover {

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./Dia.css"; 
+import "./Dia.css";
 
 const statusColors = {
     normal: "green",
@@ -9,11 +9,11 @@ const statusColors = {
 };
 
 function DayCard({ name, status }) {
+    const isClickable = status === "precaución" || status === "alerta";
+
     return (
-        <div className={`day-card`}>
+        <div className="day-card" style={{ cursor: isClickable ? "pointer" : "default" }}>
             {/* Indicador de estado */}
-            
-            {/* Nombre del día */}
             <p className="day-name">{name}</p>
             <span className={`status-indicator ${statusColors[status]}`}></span>
         </div>
