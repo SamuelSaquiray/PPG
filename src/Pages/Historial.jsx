@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Header from "../components/Header";
 import DayCard from "../components/Dia";
-import PPGChart from "../components/PPGChart"; // Suponiendo que esta es la gráfica de PPG
+import PPGChart from "../components/PPGChart";
 import "./Historial.css";
 
 const days = [
@@ -17,7 +17,7 @@ const days = [
 
 const WeeklyHealthControl = () => {
   const [selectedDay, setSelectedDay] = useState(null);
-  
+
   const handleDayClick = (day) => {
     if (day.status === "alerta" || day.status === "precaución") {
       setSelectedDay(day);
@@ -29,31 +29,53 @@ const WeeklyHealthControl = () => {
   return (
     <>
       <Header />
-      <div className="historial-container">
-        <h2 className="title-historial">Control Semanal</h2>
-        <p className="description-historial">
-          Cada color indica el estado de salud en ese día.
-        </p>
-        <div className="days-container">
-          {days.map((day) => (
-            <div key={day.name} onClick={() => handleDayClick(day)}>
-              <DayCard name={day.name} status={day.status} />
-            </div>
-          ))}
-        </div>
-        
-        {selectedDay && (
-          <motion.div 
-            className="chart-container"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3>Datos de PPG para {selectedDay.name}</h3>
-            <PPGChart day={selectedDay.name} />
-          </motion.div>
-        )}
-      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          className="historial-container"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <div className="title-container">
+            <h2 className="title-historial">Control Semanal</h2>
+            <p className="description-historial">
+              Cada color indica el estado de salud en ese día.
+            </p>
+          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              className="days-container"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              {days.map((day) => (
+                <div key={day.name} onClick={() => handleDayClick(day)}>
+                  <DayCard name={day.name} status={day.status} />
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+
+          <AnimatePresence mode="wait">
+            {selectedDay && (
+              <motion.div
+                key={selectedDay.name}
+                className="chart-container"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+                <h3>Datos de PPG para {selectedDay.name}</h3>
+                <PPGChart day={selectedDay.name} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </AnimatePresence>
     </>
   );
 };
