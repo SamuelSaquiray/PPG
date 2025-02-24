@@ -19,53 +19,44 @@ const HeartbeatGraph = () => {
         data: [],
         borderColor: "#ff6384",
         backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderWidth: 2,
+        borderWidth: 3,
         pointRadius: 0,
         tension: 0.4,
       },
     ],
   });
 
-  const [timestamp, setTimestamp] = useState(0);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://pkczdslngytekfpwdsfb.supabase.co/");//API
-        
+        const response = await fetch("https://api-lh8x.onrender.com/ppg_data_filtered"); // API
         const json = await response.json();
-        const newDataPoint = json.value;
+        const dataArray = Object.values(json).slice(-80); // Obtiene las últimas 100 mediciones
 
-        setData((prevData) => {
-          const updatedLabels = [...prevData.labels, timestamp];
-          const updatedData = [...prevData.datasets[0].data, newDataPoint];
+        if (!dataArray.length) {
+          console.error("No se pudieron obtener datos.");
+          return;
+        }
 
-          //últimos 50 puntos para simular datos en tiempo real
-          if (updatedLabels.length > 50) {
-            updatedLabels.shift();
-            updatedData.shift();
-          }
+        const labels = dataArray.map((entry) => entry.timestamp);
+        const values = dataArray.map((entry) => entry.ppg_filtered);
 
-          return {
-            labels: updatedLabels,
-            datasets: [
-              {
-                ...prevData.datasets[0],
-                data: updatedData,
-              },
-            ],
-          };
+        setData({
+          labels,
+          datasets: [
+            {
+              ...data.datasets[0],
+              data: values,
+            },
+          ],
         });
-
-        setTimestamp((prev) => prev + 1);
       } catch (error) {
         console.error("Error al obtener datos de la API:", error);
       }
     };
 
-    const interval = setInterval(fetchData, 10); // Actualiza cada 10 ms
-    return () => clearInterval(interval);
-  }, [timestamp]);
+    fetchData();
+  }, []); // Se ejecuta solo una vez al montar el componente
 
   const options = {
     responsive: true,
@@ -79,22 +70,29 @@ const HeartbeatGraph = () => {
         title: {
           display: false,
           text: "Tiempo (s)",
+           
         },
+        ticks: {
+          display: false,
+          },
       },
       y: {
         title: {
           display: false,
           text: "PPG ",
         },
-        min: 40,
-        max: 120,
+        ticks: {
+            display: false,
+            },
+        min: -1,
+        max: 1,
       },
     },
   };
 
   return (
     <>
-      <h1 className="ppg-chart-section-title">Gráfico de Pulso Cardiaco en Tiempo Real</h1>
+      <h1 className="ppg-chart-section-title">Gráfico de Pulso Cardiaco</h1>
       <Line data={data} options={options} />
     </>
   );

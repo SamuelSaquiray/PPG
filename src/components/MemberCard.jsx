@@ -3,7 +3,7 @@ function MemberCard({ title, description, imagen,cargo }) {
   const defaultImage = "image.png"; 
   return(
       <div className="container-member-card">
-      <img src={imagen || defaultImage} alt="Foto de perfil" onError={(e) => e.target.src = defaultImage} />
+      <img src={imagen || defaultImage} className="Perfil" alt="Foto de perfil" onError={(e) => e.target.src = defaultImage} />
       <h2 className="member-card-title">{title}</h2>
         <p>{description}</p>
         <h3>{cargo}</h3>

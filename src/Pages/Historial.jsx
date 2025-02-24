@@ -10,7 +10,7 @@ const days = [
   { name: "Martes", status: "normal" },
   { name: "Miércoles", status: "normal" },
   { name: "Jueves", status: "alerta" },
-  { name: "Viernes", status: "alerta" },
+  { name: "Viernes", status: "disable" },
   { name: "Sábado", status: "precaución" },
   { name: "Domingo", status: "disable" },
 ];
@@ -19,7 +19,7 @@ const WeeklyHealthControl = () => {
   const [selectedDay, setSelectedDay] = useState(null);
 
   const handleDayClick = (day) => {
-    if (day.status === "alerta" || day.status === "precaución") {
+    if (day.status != "disable") {
       setSelectedDay(day);
     } else {
       setSelectedDay(null);
@@ -52,7 +52,8 @@ const WeeklyHealthControl = () => {
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
               {days.map((day) => (
-                <div key={day.name} onClick={() => handleDayClick(day)}>
+                <div key={day.name} onClick={() => handleDayClick(day)}
+                className={`${selectedDay?.name === day.name ? "selected" : "noselected"}`}>
                   <DayCard name={day.name} status={day.status} />
                 </div>
               ))}
@@ -70,7 +71,15 @@ const WeeklyHealthControl = () => {
                 transition={{ duration: 0.5, ease: "easeOut" }}
               >
                 <h3>Datos de PPG para {selectedDay.name}</h3>
-                <PPGChart day={selectedDay.name} />
+                {selectedDay.status === "normal" ? (
+                  <img 
+                    src="social-credit.png" 
+                    alt="Estado normal" 
+                    className="status-image" 
+                  />
+                ) : (
+                  <PPGChart day={selectedDay.name} />
+                )}
               </motion.div>
             )}
           </AnimatePresence>
