@@ -5,7 +5,7 @@ import Ppchart from "../components/PPGChart";
 import { AlertPPG } from "../components/Alert";
 
 const idUser = "-OJx1Np4YHQT2c8ASdCd";
-const Api = "http://localhost:3000";
+const Api = "https://api-lh8x.onrender.com";
 
 const HealthDashboard = () => {
   const [jsonUserData, setJsonUserData] = useState(null);
