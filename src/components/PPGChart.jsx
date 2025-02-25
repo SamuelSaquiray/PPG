@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
+import PropTypes from "prop-types";
 import {
+
   Chart as ChartJS,
   LineElement,
   CategoryScale,
@@ -10,7 +12,7 @@ import {
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
-const HeartbeatGraph = () => {
+const HeartbeatGraph = ({url}) => {
   const [data, setData] = useState({
     labels: [],
     datasets: [
@@ -29,9 +31,10 @@ const HeartbeatGraph = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://api-lh8x.onrender.com/ppg_data_filtered"); // API
+        const response = await fetch(url); // API
         const json = await response.json();
-        const dataArray = Object.values(json).slice(-80); // Obtiene las últimas 100 mediciones
+
+        const dataArray = Object.values(json).slice(-80); // Obtiene las últimas 80 mediciones
 
         if (!dataArray.length) {
           console.error("No se pudieron obtener datos.");
@@ -70,11 +73,13 @@ const HeartbeatGraph = () => {
         title: {
           display: false,
           text: "Tiempo (s)",
-           
         },
         ticks: {
           display: false,
-          },
+        },
+        grid: {
+          display: false,
+        },
       },
       y: {
         title: {
@@ -82,20 +87,24 @@ const HeartbeatGraph = () => {
           text: "PPG ",
         },
         ticks: {
-            display: false,
-            },
+          display: false,
+        },
         min: -1,
         max: 1,
+        grid: {
+          display: false,
+        },
       },
     },
   };
 
   return (
     <>
-      <h1 className="ppg-chart-section-title">Gráfico de Pulso Cardiaco</h1>
       <Line data={data} options={options} />
     </>
   );
 };
-
+HeartbeatGraph.propTypes = {
+  url: PropTypes.string.isRequired,
+};
 export default HeartbeatGraph;

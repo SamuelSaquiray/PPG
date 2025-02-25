@@ -1,0 +1,309 @@
+.dashboard-container {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 950px;
+  margin: auto;
+  color: #333;
+  gap:30px
+}
+
+.user-info {
+  grid-row: span 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  gap:20px;
+  background: #f5f5f5;
+  width:200px ;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background: gray;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.details h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.steps, .heart-rate, .stress, .sleep, .oxygen {
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-stats {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  width: 200px;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+.Circulo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  background: #00000000;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  margin: 10px auto;
+  border-top: #007bff solid 80px;
+  border-left:#007bff solid 80px;
+  border-bottom: #007bff solid 80px;
+  border-right: #ffffff solid 80px;
+  transform: rotate(90deg);
+  
+}
+.blanco{
+  width: 120px;
+  height: 120px;
+  background-color: white;
+  border-radius: 50%;
+  position: relative;
+  bottom:150px;
+  left:20px;
+}
+
+.container{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.container .progress{
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #00000000 linear-gradient(to right, transparent 50%, var(--clr) 0) ;
+}
+.container .progress h3{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  z-index: 1;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.container .progress h3 span{
+  font-size: 0.65em;
+  font-weight: 400;
+}
+.container .progress::before{
+  content: '';
+  display: block;
+  height: 100%;
+  margin-left: 50%;
+  transform-origin: left;
+  border-radius: 0 100% 100% 0 / 50%;
+}
+.container .progress::after{
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+.container .progress::before{
+  background:var(--clr);
+transform: rotate(calc((var(--i) - 50)* 0.01turn));
+}
+
+
+.heart {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  position: relative;
+  bottom:30px;
+  left: 95px;
+  transform: rotate(-45deg);
+  animation: heartbeat 1s infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  top: -5px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 5px;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1) rotate(-45deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(-45deg);
+  }
+}
+
+.grafico_diario canvas{
+  width: 50px;
+  height: 50px;
+}
+
+span{
+  font-size: 20px;
+  font-weight: bold;
+}
+.bpm{
+  font-size: 15px;
+  font-weight: normal;
+  opacity: 80%;
+}
+.container .progress p{
+  position: absolute;
+  top: 50%;
+  left: 150%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  z-index: 1;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+
+/* Estilos generales */
+.alert-box {
+  background-color: #ffcccc;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 600px;
+  z-index: 1;
+  margin: 20px auto;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top:25%;
+  left:25%;
+}
+
+.alert-text {
+  font-size: 36px;
+  font-weight: bold;
+  color: #d60000;
+  margin-bottom: 10px;
+}
+
+.alert-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.false-alarm-button {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 32px;
+}
+
+.false-alarm-button:hover {
+  background-color: #cc0000;
+}
+/* Estilos del chat */
+.chat-container {
+  width: 400px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chat-title {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.chat-box {
+  height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.chat-message {
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
+  max-width: 80%;
+}
+
+.chat-message.user {
+  background-color: #d1e7ff;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.chat-message.gpt {
+  background-color: #e9ecef;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.chat-input-container {
+  display: flex;
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.send-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.send-button:hover {
+  background-color: #0056b3;
+}
