@@ -19,7 +19,7 @@ export function Unirse() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/register", { 
+      const response = await fetch("https://api-lh8x.onrender.com/register", { 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -47,7 +47,7 @@ export function Unirse() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("https://api-lh8x.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
