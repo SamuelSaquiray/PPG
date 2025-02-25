@@ -4,7 +4,7 @@ import Ppchart from "../components/PPGChart";
 
 import { AlertPPG } from "../components/Alert";
 const idUser="-OJx1Np4YHQT2c8ASdCd";
-const Api="http://localhost:3000";
+const Api="https://api-lh8x.onrender.com";
 const response = await fetch(`${Api}/heart_rate_data/${idUser}`);
 const responseUserData=await fetch(`${Api}/user/${idUser}`);
 //const responseKcal=await fetch(`${Api}/kcal_data`);
