@@ -94,7 +94,6 @@ const HealthDashboard = () => {
             <span className="bpm"> bpm</span>
           </p>
           <div className="grafico_diario">
-            <p className="registerless">aun sin registros</p>
             <Ppchart url={userId ? `${Api}/ppg_data_filtered/${userId}` : ""} />
           </div>
           <div className="graph"></div>
