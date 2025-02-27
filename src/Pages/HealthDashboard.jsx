@@ -16,7 +16,7 @@ const HealthDashboard = () => {
 
   useEffect(() => {
     let intervalId;
-
+    
     async function fetchData() {
       if (!userId) {
         setJsonUserData({
@@ -77,7 +77,7 @@ const HealthDashboard = () => {
           <div className="details">
             <h2>{jsonUserData.name}</h2>
             <p>Edad: {jsonUserData.age} años</p>
-            <p>Estatura: 178 cm</p>
+            <p>Estatura: {jsonUserData.altura} cm</p>
             <p>Peso: {jsonUserData.peso} kg</p>
           </div>
         </header>
