@@ -20,19 +20,19 @@ function Equipo() {
         >
           <MemberCard
             title="Samuel Saquiray"
-            imagen="public/Saquiray.png"
+            imagen="/Saquiray.png"
             description="Estudiante de quinto ciclo de la carrera de ciencias de la computacion"
             cargo="CTO"
           />
           <MemberCard
             title="Diego Uchasara"
-            imagen="public/Uchasara.jpg"
+            imagen="/Uchasara.jpg"
             description="Estudiante de septimo ciclo de la carrera de ingenieria electronica"
             cargo="CIO"
           />
           <MemberCard
             title="Berdugo"
-            imagen="public/Berde.jpg"
+            imagen="/Berde.jpg"
             description="Estudiante de ... No se pero es berdugo"
             cargo="Hierro 4"
           />

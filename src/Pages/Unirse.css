@@ -18,7 +18,7 @@
 }
 
 /* Título */
-.register-title {
+.register-title,.login-title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 20px;
@@ -26,12 +26,16 @@
 }
 
 /* Formulario */
-.register-form {
+.register-form,.login-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
-
+.o{
+  margin: 0;
+  font-weight: 400;
+  font-size:30px;
+}
 /* Campos de entrada */
 .register-input {
   padding: 10px;
@@ -47,7 +51,7 @@
   padding: 10px;
   font-size: 1rem;
   color: white;
-  background-color: #007bff;
+  background-color: #2ABBF8;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -89,4 +93,8 @@
 .back-button{
   position: relative;
   top:10px;
+}
+
+input{
+  height: 30px;
 }

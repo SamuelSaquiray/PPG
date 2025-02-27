@@ -3,20 +3,37 @@ import "./HealthDashboard.css";
 import Header from "../components/Header";
 import Ppchart from "../components/PPGChart";
 import { AlertPPG } from "../components/Alert";
+import { useAuth } from "../components/AuthContext";
 
-const idUser = "-OJx1Np4YHQT2c8ASdCd";
 const Api = "https://api-lh8x.onrender.com";
 
 const HealthDashboard = () => {
+  const { userId } = useAuth();
   const [jsonUserData, setJsonUserData] = useState(null);
   const [dataArray, setDataArray] = useState([]);
   const [roundedAvgHeartRate, setRoundedAvgHeartRate] = useState(0);
-  
+  const [progress_calories, setProgressCalories] = useState(0);
+
   useEffect(() => {
     async function fetchData() {
+      if (!userId) {
+        const fakeUserData = {
+          name: "Usuario Invitado",
+          age: 30,
+          peso: 70,
+          calories: { calories: 2000 },
+        };
+        const fakeDataArray = Array(80).fill({ heart_rate: 75 });
+        setJsonUserData(fakeUserData);
+        setDataArray(fakeDataArray);
+        setRoundedAvgHeartRate(75);
+        setProgressCalories(fakeUserData.calories.calories);
+        return;
+      }
+      
       try {
-        const response = await fetch(`${Api}/heart_rate_data/${idUser}`);
-        const responseUserData = await fetch(`${Api}/user/${idUser}`);
+        const response = await fetch(`${Api}/heart_rate_data/${userId}`);
+        const responseUserData = await fetch(`${Api}/user/${userId}`);
         
         const json = await response.json();
         const userData = await responseUserData.json();
@@ -24,7 +41,8 @@ const HealthDashboard = () => {
         const latestData = Object.values(json).slice(-80);
         const avgHeartRate =
           latestData.reduce((acc, curr) => acc + curr.heart_rate, 0) / latestData.length;
-
+        
+        setProgressCalories(userData.calories.calories);
         setJsonUserData(userData);
         setDataArray(latestData);
         setRoundedAvgHeartRate(Math.round(avgHeartRate));
@@ -34,13 +52,12 @@ const HealthDashboard = () => {
     }
 
     fetchData();
-  }, []);
+  }, [userId]);
 
   if (!jsonUserData || dataArray.length === 0) {
     return <p>Cargando datos...</p>;
   }
-
-  const progress_calories = 35;
+  
   const defaultImage = "image.png"; 
   const imagen = "user.jpg";
 
@@ -53,7 +70,7 @@ const HealthDashboard = () => {
             src={imagen || defaultImage} 
             className="Perfil" 
             alt="Foto de perfil" 
-            onError={(e) => e.target.src = defaultImage} 
+            onError={(e) => (e.target.src = defaultImage)} 
           />
           <div className="details">
             <h2>{jsonUserData.name}</h2>
@@ -65,31 +82,29 @@ const HealthDashboard = () => {
 
         <section className="heart-rate">
           <h3>Ritmo Cardíaco</h3>
-          <p className="rate">
+          <div className="rate">
             <span>{dataArray[dataArray.length - 1]?.heart_rate}</span>  
-            <span className="bpm"> bpm</span>
-          </p>
-          <div className="heart"></div>
+            <span className="bpm"> bpm<div className="heart"></div></span>
+          
+          
+          </div>
           <p>
             Frecuencia cardiaca media del día 
             <span> {roundedAvgHeartRate}</span> 
             <span className="bpm"> bpm</span>
           </p>
           <div className="grafico_diario">
-            <Ppchart url={`${Api}/ppg_data_filtered/${idUser}`} />
+            <p className="registerless">aun sin registros</p>
+            <Ppchart url={userId ? `${Api}/ppg_data_filtered/${userId}` : ""} />
           </div>
           <div className="graph"></div>
         </section>
-
-        <AlertPPG />
-
+        
         <footer className="footer-stats">
-          <div className="container">
-            <div className="progress" style={{ "--i": progress_calories, "--clr": "#ff0000" }}>
-              <h3>35<span>%</span></h3>
-            </div>
-          </div>
+          <img src="/fire.svg" alt="calorías" />
+          <h3>{`${progress_calories}`}<span>kcal</span></h3>
         </footer>
+        <AlertPPG name={jsonUserData} />
       </div>
     </>
   );

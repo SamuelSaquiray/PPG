@@ -1,0 +1,91 @@
+import { useState } from "react";
+
+import { useAuth } from "../components/AuthContext";
+
+
+const RegistroSecundario = () => {
+    const { userId } = useAuth();
+    const [formData, setFormData] = useState({
+        fechaNacimiento: "",
+        edad: "",
+        peso: "",
+        contact_emergency: [""]
+    });
+
+    const handleChange = (e, index) => {
+        if (e.target.name === "contact_emergency") {
+            const updatedNumbers = [...formData.contact_emergency];
+            updatedNumbers[index] = e.target.value;
+            setFormData({ ...formData, contact_emergency: updatedNumbers });
+        } else {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+        }
+    };
+
+    const agregarNumeroEmergencia = () => {
+        setFormData({ ...formData, contact_emergency: [...formData.contact_emergency, ""] });
+    };
+
+    const eliminarNumeroEmergencia = (index) => {
+        const updatedNumbers = formData.contact_emergency.filter((_, i) => i !== index);
+        setFormData({ ...formData, contact_emergency: updatedNumbers });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch(`https://api-lh8x.onrender.com/completar-perfil/${userId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ userId, ...formData })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert("Perfil actualizado correctamente");
+            } else {
+                alert(`Error: ${data.error}`);
+            }
+        } catch (error) {
+            console.error("Error al actualizar perfil:", error);
+        }
+    };
+
+    return (
+        <div>
+            <h2>Completa tu Perfil</h2>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Fecha de Nacimiento:
+                    <input type="date" name="fechaNacimiento" value={formData.fechaNacimiento} onChange={handleChange} required />
+                </label>
+                
+                <label>
+                    Edad:
+                    <input type="number" name="edad" value={formData.edad} onChange={handleChange} required />
+                </label>
+
+                <label>
+                    Peso (kg):
+                    <input type="number" name="peso" value={formData.peso} onChange={handleChange} required />
+                </label>
+
+                <label>Números de Emergencia:</label>
+                {formData.contact_emergency.map((numero, index) => (
+                    <div key={index}>
+                        <input type="tel" name="contact_emergency" value={numero} onChange={(e) => handleChange(e, index)} required />
+                        <button type="button" onClick={() => eliminarNumeroEmergencia(index)}>Eliminar</button>
+                    </div>
+                ))}
+                <button type="button" onClick={agregarNumeroEmergencia}>Agregar Número</button>
+
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    );
+};
+
+export default RegistroSecundario;

@@ -1,7 +1,8 @@
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 
-// Componente de Alerta en la página de control del PPG
-export function AlertPPG() {
+
+export function AlertPPG(data) {
   const [alertVisible, setAlertVisible] = useState(false);
   const [countdown, setCountdown] = useState(5);
   const [isCounting, setIsCounting] = useState(false);
@@ -11,9 +12,26 @@ export function AlertPPG() {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
       return () => clearTimeout(timer);
     } else if (countdown === 0) {
-      console.log("Mensaje enviado a contactos de emergencia");
+      sendEmergencyAlert();
     }
   }, [countdown, isCounting]);
+  const sendEmergencyAlert = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/alerta-whatsapp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          numeros_emergencia: [51946248041,51957954716], // Número de emergencia
+          mensaje: `⚠️ Alerta de hipertensión detectada. Por favor, revise la condición de ${data.name.name}.`,
+        }),
+      });
+
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.error("Error al enviar alerta:", error);
+    }
+  };
 
   const handleFalseAlarm = () => {
     setAlertVisible(false);
@@ -42,3 +60,6 @@ export function AlertPPG() {
     </div>
   );
 }
+PropTypes.AlertPPG = {
+  data: PropTypes.string.isRequired,
+};
