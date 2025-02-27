@@ -74,7 +74,7 @@ const HealthDashboard = () => {
           />
           <div className="details">
             <h2>{jsonUserData.name}</h2>
-            <p>Edad: {jsonUserData.age} años</p>
+            <p>doc_email: {jsonUserData.age} años</p>
             <p>Estatura: 178 cm </p>
             <p>Peso: {jsonUserData.peso} kg</p>
           </div>

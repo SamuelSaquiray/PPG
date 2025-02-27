@@ -1,9 +1,13 @@
 import Header from "../components/Header";
 import Badge from "../components/Badge";
 import "./Inicio.css"; // Importa el archivo CSS
+import { useAuth } from "../components/AuthContext";
 
 
 function Inicio() {
+  const { userId } = useAuth();
+
+  console.log(userId);
     return (  
       <>
           <Header/>

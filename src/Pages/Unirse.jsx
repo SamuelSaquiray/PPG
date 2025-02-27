@@ -36,6 +36,7 @@ export function Unirse() {
       if (response.ok) {
         alert("Registro exitoso");
         setUserId(data.user.id);
+        console.log(data.user.id);
         navigate("/RegistroSecundario");
       } else {
         alert("Error en el registro: " + data.message);

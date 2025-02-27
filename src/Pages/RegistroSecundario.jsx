@@ -5,12 +5,13 @@ import { useAuth } from "../components/AuthContext";
 
 const RegistroSecundario = () => {
     const { userId } = useAuth();
+    console.log(userId);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         fechaNacimiento: "",
-        edad: "",
+        doc_email: "",
         peso: "",
-        contact_emergency: [""]
+        contact_emergency: [""],
     });
 
     const handleChange = (e, index) => {
@@ -47,6 +48,7 @@ const RegistroSecundario = () => {
             const data = await response.json();
             if (response.ok) {
                 alert("Perfil actualizado correctamente");
+                navigate("/");
             } else {
                 alert(`Error: ${data.error}`);
             }
@@ -65,13 +67,14 @@ const RegistroSecundario = () => {
                 </label>
                 
                 <label>
-                    Edad:
-                    <input type="number" name="edad" value={formData.edad} onChange={handleChange} required />
-                </label>
+                    Correo electronico de su medico:
+                    <input type="email" name="doc_email" placeholder="Email" value={formData.doc_email} onChange={handleChange} required />
+                    </label>
+                
 
                 <label>
                     Peso (kg):
-                    <input type="number" name="peso" value={formData.peso} onChange={handleChange} required />
+                    <input type="number" name="peso" value={formData.peso} placeholder="peso" onChange={handleChange} required />
                 </label>
 
                 <label>Números de Emergencia:</label>
@@ -83,7 +86,7 @@ const RegistroSecundario = () => {
                 ))}
                 <button type="button" onClick={agregarNumeroEmergencia}>Agregar Número</button>
 
-                <button type="submit" onClick={() => navigate(-2)}>Guardar</button>
+                <button type="submit" >Guardar</button>
             </form>
         </div>
     );
