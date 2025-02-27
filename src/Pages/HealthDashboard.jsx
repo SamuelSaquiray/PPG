@@ -21,13 +21,13 @@ const HealthDashboard = () => {
           name: "Usuario Invitado",
           age: 30,
           peso: 70,
-          calories: { calories: 2000 },
+          kcal: { calories: 2000 },
         };
         const fakeDataArray = Array(80).fill({ heart_rate: 75 });
         setJsonUserData(fakeUserData);
         setDataArray(fakeDataArray);
         setRoundedAvgHeartRate(75);
-        setProgressCalories(fakeUserData.calories.calories);
+        setProgressCalories(fakeUserData.kcal.calories);
         return;
       }
       
@@ -42,7 +42,7 @@ const HealthDashboard = () => {
         const avgHeartRate =
           latestData.reduce((acc, curr) => acc + curr.heart_rate, 0) / latestData.length;
         
-        setProgressCalories(userData.calories.calories);
+        setProgressCalories(userData.kcal.calories);
         setJsonUserData(userData);
         setDataArray(latestData);
         setRoundedAvgHeartRate(Math.round(avgHeartRate));
