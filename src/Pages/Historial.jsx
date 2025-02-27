@@ -73,7 +73,7 @@ const WeeklyHealthControl = () => {
                 <h3>Datos de PPG para {selectedDay.name}</h3>
                 {selectedDay.status === "normal" ? (
                   <img 
-                    src="social-credit.png" 
+                    src="check.jpg" 
                     alt="Estado normal" 
                     className="status-image" 
                   />
