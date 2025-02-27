@@ -58,7 +58,7 @@ const HeartbeatGraph = ({ url }) => {
     };
 
     // Llamar a fetchData cada 500ms
-    const interval = setInterval(fetchData, 50);
+    const interval = setInterval(fetchData, 500);
 
     return () => clearInterval(interval); // Limpiar el intervalo al desmontar
   }, [url]); // Se actualiza si cambia la URL
