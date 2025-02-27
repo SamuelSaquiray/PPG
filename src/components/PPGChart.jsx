@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import PropTypes from "prop-types";
 import {
-
   Chart as ChartJS,
   LineElement,
   CategoryScale,
@@ -12,7 +11,7 @@ import {
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
-const HeartbeatGraph = ({url}) => {
+const HeartbeatGraph = ({ url }) => {
   const [data, setData] = useState({
     labels: [],
     datasets: [
@@ -34,7 +33,7 @@ const HeartbeatGraph = ({url}) => {
         const response = await fetch(url); // API
         const json = await response.json();
 
-        const dataArray = Object.values(json).slice(-80); // Obtiene las últimas 80 mediciones
+        const dataArray = Object.values(json).slice(-80); // Últimas 80 mediciones
 
         if (!dataArray.length) {
           console.error("No se pudieron obtener datos.");
@@ -44,22 +43,25 @@ const HeartbeatGraph = ({url}) => {
         const labels = dataArray.map((entry) => entry.timestamp);
         const values = dataArray.map((entry) => entry.ppg_filtered);
 
-        setData({
+        setData((prevData) => ({
           labels,
           datasets: [
             {
-              ...data.datasets[0],
+              ...prevData.datasets[0],
               data: values,
             },
           ],
-        });
+        }));
       } catch (error) {
         console.error("Error al obtener datos de la API:", error);
       }
     };
 
-    fetchData();
-  }, []); // Se ejecuta solo una vez al montar el componente
+    // Llamar a fetchData cada 500ms
+    const interval = setInterval(fetchData, 50);
+
+    return () => clearInterval(interval); // Limpiar el intervalo al desmontar
+  }, [url]); // Se actualiza si cambia la URL
 
   const options = {
     responsive: true,
@@ -70,41 +72,23 @@ const HeartbeatGraph = ({url}) => {
     },
     scales: {
       x: {
-        title: {
-          display: false,
-          text: "Tiempo (s)",
-        },
-        ticks: {
-          display: false,
-        },
-        grid: {
-          display: false,
-        },
+        ticks: { display: false },
+        grid: { display: false },
       },
       y: {
-        title: {
-          display: false,
-          text: "PPG ",
-        },
-        ticks: {
-          display: false,
-        },
+        ticks: { display: false },
         min: -1,
         max: 1,
-        grid: {
-          display: false,
-        },
+        grid: { display: false },
       },
     },
   };
 
-  return (
-    <>
-      <Line data={data} options={options} />
-    </>
-  );
+  return <Line data={data} options={options} />;
 };
+
 HeartbeatGraph.propTypes = {
   url: PropTypes.string.isRequired,
 };
+
 export default HeartbeatGraph;
