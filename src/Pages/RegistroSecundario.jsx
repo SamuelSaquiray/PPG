@@ -1,10 +1,11 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
 
 
 const RegistroSecundario = () => {
     const { userId } = useAuth();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         fechaNacimiento: "",
         edad: "",
@@ -82,7 +83,7 @@ const RegistroSecundario = () => {
                 ))}
                 <button type="button" onClick={agregarNumeroEmergencia}>Agregar Número</button>
 
-                <button type="submit">Guardar</button>
+                <button type="submit" onClick={() => navigate(-2)}>Guardar</button>
             </form>
         </div>
     );
