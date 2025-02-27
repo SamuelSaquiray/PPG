@@ -1,11 +1,29 @@
-import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+import { useAuth } from "../components/AuthContext";
+import { ref, onValue } from "firebase/database";
+import { database } from "../firebaseConfig.js"; // Importa la configuración de Firebase
 
-
-export function AlertPPG(data) {
+export function AlertPPG() {
   const [alertVisible, setAlertVisible] = useState(false);
   const [countdown, setCountdown] = useState(5);
   const [isCounting, setIsCounting] = useState(false);
+
+  const { userId } = useAuth();
+
+  useEffect(() => {
+    if (!userId) return;
+
+    const anomalyRef = ref(database, `users/${userId}/anomalia`);
+
+    const unsubscribe = onValue(anomalyRef, (snapshot) => {
+      if (snapshot.exists()) {
+        console.log("Nueva anomalía detectada:", snapshot.val());
+        startCountdown();
+      }
+    });
+
+    return () => unsubscribe();
+  }, [userId]);
 
   useEffect(() => {
     if (isCounting && countdown > 0) {
@@ -15,21 +33,36 @@ export function AlertPPG(data) {
       sendEmergencyAlert();
     }
   }, [countdown, isCounting]);
+
   const sendEmergencyAlert = async () => {
     try {
-      const response = await fetch("http://localhost:3000/alerta-whatsapp", {
+      const responseUserData = await fetch(`https://api-lh8x.onrender.com/user/${userId}`);
+      const userData = await responseUserData.json();
+
+      // Enviar alerta a WhatsApp
+      await fetch("https://api-lh8x.onrender.com/alerta-whatsapp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          numeros_emergencia: [51946248041,51957954716], // Número de emergencia
-          mensaje: `⚠️ Alerta de hipertensión detectada. Por favor, revise la condición de ${data.name.name}.`,
+          contact_emergency: userData.contact_emergency,
+          mensaje: `⚠️ Alerta de hipertensión detectada. Por favor, revise la condición de ${userData.name}.`,
         }),
       });
+      // Enviar correo electrónico
+      await fetch("https://api-lh8x.onrender.com/enviar-correo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: userData.doc_email,
+          userId:userData.id,
+          subject: "Alerta de emergencia",
+          message: `Se ha detectado una anomalía en el usuario ${userData.name}.`,
+        }),
+        
+      });
 
-      const result = await response.json();
-      console.log(result);
-    } catch (error) {
-      console.error("Error al enviar alerta:", error);
+     } catch (error) {
+      console.error("Error al enviar alertas:", error);
     }
   };
 
@@ -60,6 +93,3 @@ export function AlertPPG(data) {
     </div>
   );
 }
-PropTypes.AlertPPG = {
-  data: PropTypes.string.isRequired,
-};

@@ -1,22 +1,32 @@
-import { createContext, useState, useContext } from "react";
-import PropTypes from 'prop-types';
-
+import { createContext, useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
-  const [userId, setUserId] = useState(null);
+export const AuthProvider = ({ children }) => {
+  const [userId, setUserId] = useState(() => {
+    return localStorage.getItem("userId") || null; // Recuperar sesión previa
+  });
+
+  useEffect(() => {
+    if (userId) {
+      localStorage.setItem("userId", userId); // Guardar sesión
+    } else {
+      localStorage.removeItem("userId"); // Borrar si no hay usuario
+    }
+  }, [userId]);
 
   return (
     <AuthContext.Provider value={{ userId, setUserId }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
-
+export const useAuth = () => useContext(AuthContext);
 AuthProvider.propTypes = {
-    children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+AuthProvider.defaultProps = {
+  children: null,
 };
