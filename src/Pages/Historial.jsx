@@ -9,9 +9,9 @@ const days = [
   { name: "Lunes", status: "normal" },
   { name: "Martes", status: "normal" },
   { name: "Miércoles", status: "normal" },
-  { name: "Jueves", status: "alerta" },
+  { name: "Jueves", status: "disable" },
   { name: "Viernes", status: "disable" },
-  { name: "Sábado", status: "precaución" },
+  { name: "Sábado", status: "disable" },
   { name: "Domingo", status: "disable" },
 ];
 
